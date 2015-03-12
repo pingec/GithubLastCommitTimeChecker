@@ -1,0 +1,32 @@
+{
+  "name": "GithubLastCommitTimeChecker",
+  "version": "0.1.0",
+  "description": "Monitors a specified repository's last commit time and sends and alert email if time of last commit is older than allowed.",
+  "main": "main.js",
+  "dependencies": {
+    "nodemailer": "^1.3.2",
+    "requestify": "^0.1.17"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pingec/GithubLastCommitTimeChecker"
+  },
+  "keywords": [
+    "Github",
+    "commit",
+    "ping",
+    "notify",
+    "alert",
+    "email"
+  ],
+  "author": "matej.drolc@pingec.si",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pingec/GithubLastCommitTimeChecker/issues"
+  },
+  "homepage": "https://github.com/pingec/GithubLastCommitTimeChecker"
+}
