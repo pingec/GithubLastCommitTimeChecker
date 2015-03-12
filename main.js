@@ -1,25 +1,26 @@
 var requestify = require('requestify');
 var nodemailer = require('nodemailer');
 var email = require('./emailConf');
-var config = require('./config');
+var configs = require('./config');
 
-setInterval(check, config.checkInterval);
-check();
+configs.forEach(function(section) {
+    setInterval(function() {
+        check(section);
+    }, section.checkInterval);
+    check(section);
+});
 
-function check() {
+function check(config) {
 
     requestify.get('https://api.github.com/repos' + config.gitHubRepoPath).then(function(response) {
 
         var jsonResp = response.getBody(); // Get the response body (JSON parsed - JSON response or jQuery object in case of XML response)
-
         if (jsonResp && jsonResp.pushed_at) {
-
             var lastCommitEpochTime = Date.parse(jsonResp.pushed_at);
             var nowEpochTime = Date.now();
 
             if (nowEpochTime - lastCommitEpochTime > config.expirationInterval) {
                 console.log('Found stale repo: ' + config.gitHubRepoPath + ' ', new Date(nowEpochTime), new Date(lastCommitEpochTime));
-                debugger;
                 sendEmail('Github repo is stale: ' + config.gitHubRepoPath, config.gitHubRepoPath + ' is stale.' + '<br/>Time of check: ' + new Date(nowEpochTime) + '<br/>Last commit time:' + new Date(lastCommitEpochTime), [config.notifyEmail]);
             } else {
                 console.log("ALL is fine. ", nowEpochTime, lastCommitEpochTime);

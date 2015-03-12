@@ -8,12 +8,12 @@ Monitors a specified repository's last commit time and sends and alert email if 
 1. Create config.js with your settings. For example:
 
     ```js
-    var config = {
+    var config = [{
         checkInterval : 60 * 60 * 1000,              //how often to check github in milliseconds
         expirationInterval : 2 * 60 * 60 * 1000,    //the allowed maximum time-window since last commit before triggering alerts (when nowTime - lastCommitTime is greater than expirationInterval)
         gitHubRepoPath : '/JohnSmith/MyRepository',
         notifyEmail: 'someone@gmail.com'
-    };
+    }];
     module.exports = config;
     ```    
 
