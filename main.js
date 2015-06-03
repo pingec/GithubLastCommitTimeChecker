@@ -41,7 +41,7 @@ function sendEmail(subj, msg, receivers) {
         }
     });
     var mailOptions = {
-        from: email.From, // sender address
+        from: email.from, // sender address
         to: receivers.join(','), // list of receivers
         subject: subj, // Subject line
         text: msg, // plaintext body
